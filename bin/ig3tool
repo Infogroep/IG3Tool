@@ -1,14 +1,14 @@
 #!/usr/bin/env ruby
 
 require 'gtk2'
-require 'libglade2'
+#require 'libglade2'
 require 'rubygems'
 require 'facets'
 
 # Client - Yaml / CONFIG
 require 'ig3client'
-require "lib/errors"
-require "lib/util"
+require_relative "../lib/lib/errors"
+require_relative "../lib/lib/util"
 
 module Ig3tool
 
@@ -107,18 +107,18 @@ module Ig3tool
 end
 
 # Toolwindow is het hoofd window
-require "ui/toolwindow"
-require "ui/gladehelper"
+require_relative "../lib/ui/toolwindow"
+require_relative "../lib/ui/gladehelper"
 
-# Alle functionaliteit loaden
-require "ui/bibliotheekwindow"
-require "ui/automaatwindow"
-require "ui/peoplewindow"
-require "ui/saleswindow"
-require "ui/printingwindow.rb"
-require "ui/interne.rb"
-require "ui/protjes.rb"
-require "ui/loginwindow.rb"
+# Alle functionali../lib/lib/teit loaden
+require_relative "../lib/ui/bibliotheekwindow"
+require_relative "../lib/ui/automaatwindow"
+require_relative "../lib/ui/peoplewindow"
+require_relative "../lib/ui/saleswindow"
+require_relative "../lib/ui/printingwindow.rb"
+require_relative "../lib/ui/interne.rb"
+require_relative "../lib/ui/protjes.rb"
+require_relative "../lib/ui/loginwindow.rb"
 
 # Start de grafische interface
 Ig3tool::start()

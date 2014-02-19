@@ -12,18 +12,18 @@ module Ig3tool
 
 
     def initialize
-      super("newinterne.glade")
+      super("newinterne.xml")
 
 
-      @action = @glade.get_widget("action")
-      @notification = @glade.get_widget("notification")
-      @message = @glade.get_widget("message")
-      @amount = @glade.get_widget("amount")
-      @saldo = @glade.get_widget("saldo")
-      @from = @glade.get_widget("fromcombo")
-      @to = @glade.get_widget("tocombo")
+      @action = @glade.get_object("action")
+      @notification = @glade.get_object("notification")
+      @message = @glade.get_object("message")
+      @amount = @glade.get_object("amount")
+      @saldo = @glade.get_object("saldo")
+      @from = @glade.get_object("fromcombo")
+      @to = @glade.get_object("tocombo")
 
-      @transactions = @glade.get_widget("transactions")
+      @transactions = @glade.get_object("transactions")
       @transactions.model = @transactions_store = Gtk::ListStore.new(Object, String, String, String, String, String)
       l = Gtk::CellRendererText.new
       @transactions.insert_column(-1, "time", l) do |tvc, cell, m, iter|

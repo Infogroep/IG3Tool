@@ -1,16 +1,31 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
+<?xml version="1.0"?>
 <!--*- mode: xml -*-->
-<glade-interface>
-  <widget class="GtkWindow" id="window">
+<interface>
+  <object class="GtkListStore" id="model1">
+    <columns>
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">non member</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">debugger</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">member</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkWindow" id="window">
     <property name="title" translatable="yes">Sales</property>
     <property name="default_width">550</property>
     <property name="default_height">420</property>
     <child>
-      <widget class="GtkVBox" id="vbox">
+      <object class="GtkVBox" id="vbox">
         <property name="visible">True</property>
         <child>
-          <widget class="GtkTable" id="table1">
+          <object class="GtkTable" id="table1">
             <property name="visible">True</property>
             <property name="border_width">6</property>
             <property name="n_rows">3</property>
@@ -24,60 +39,64 @@
               <placeholder/>
             </child>
             <child>
-              <widget class="GtkLabel" id="label6">
+              <object class="GtkLabel" id="label6">
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="label" translatable="yes">Debugger:</property>
-              </widget>
+              </object>
               <packing>
                 <property name="top_attach">1</property>
                 <property name="bottom_attach">2</property>
                 <property name="x_options">GTK_FILL</property>
-                <property name="y_options"></property>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
-              <widget class="GtkEntry" id="count">
+              <object class="GtkEntry" id="count">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="text" translatable="yes">1</property>
-                <signal name="activate" handler="count_activate"/>
-              </widget>
+                <signal handler="count_activate" name="activate"/>
+              </object>
               <packing>
                 <property name="left_attach">1</property>
                 <property name="right_attach">2</property>
                 <property name="top_attach">2</property>
                 <property name="bottom_attach">3</property>
-                <property name="y_options"></property>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
-              <widget class="GtkLabel" id="label5">
+              <object class="GtkLabel" id="label5">
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="label" translatable="yes">Aantal:</property>
-              </widget>
+              </object>
               <packing>
                 <property name="top_attach">2</property>
                 <property name="bottom_attach">3</property>
                 <property name="x_options">GTK_FILL</property>
-                <property name="y_options"></property>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
-              <widget class="GtkComboBoxEntry" id="member_id">
+              <object class="GtkComboBoxEntry" id="member_id">
                 <property name="visible">True</property>
                 <property name="active">0</property>
-                <property name="items" translatable="yes">non member
-debugger
-member</property>
-                <signal name="changed" handler="member_changed"/>
+                <signal handler="member_changed" name="changed"/>
                 <child internal-child="entry">
-                  <widget class="GtkEntry" id="comboboxentry-entry1">
+                  <object class="GtkEntry" id="comboboxentry-entry1">
                     <property name="text" translatable="yes">non member</property>
-                  </widget>
+                  </object>
                 </child>
-              </widget>
+                <property name="model">model1</property>
+                <child>
+                  <object class="GtkCellRendererText" id="renderer1"/>
+                  <attributes>
+                    <attribute name="text">0</attribute>
+                  </attributes>
+                </child>
+              </object>
               <packing>
                 <property name="left_attach">3</property>
                 <property name="right_attach">4</property>
@@ -88,50 +107,50 @@ member</property>
               </packing>
             </child>
             <child>
-              <widget class="GtkLabel" id="label7">
+              <object class="GtkLabel" id="label7">
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="label" translatable="yes">Lid:</property>
-              </widget>
+              </object>
               <packing>
                 <property name="left_attach">2</property>
                 <property name="right_attach">3</property>
                 <property name="top_attach">2</property>
                 <property name="bottom_attach">3</property>
                 <property name="x_options">GTK_FILL</property>
-                <property name="y_options"></property>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
-              <widget class="GtkLabel" id="label1">
+              <object class="GtkLabel" id="label1">
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
                 <property name="label" translatable="yes">Smartzap:</property>
-              </widget>
+              </object>
               <packing>
                 <property name="x_options">GTK_FILL</property>
-                <property name="y_options"></property>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
-              <widget class="GtkEntry" id="smartzap">
+              <object class="GtkEntry" id="smartzap">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <signal name="activate" handler="smartzap_activate"/>
-              </widget>
+                <signal handler="smartzap_activate" name="activate"/>
+              </object>
               <packing>
                 <property name="left_attach">1</property>
                 <property name="right_attach">2</property>
-                <property name="y_options"></property>
+                <property name="y_options"/>
               </packing>
             </child>
             <child>
-              <widget class="GtkComboBox" id="debugger">
+              <object class="GtkComboBox" id="debugger">
                 <property name="visible">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="active">0</property>
-                <signal name="changed" handler="debugger_changed"/>
-              </widget>
+                <signal handler="debugger_changed" name="changed"/>
+              </object>
               <packing>
                 <property name="left_attach">1</property>
                 <property name="right_attach">2</property>
@@ -140,16 +159,16 @@ member</property>
               </packing>
             </child>
             <child>
-              <widget class="GtkAlignment" id="alignment1">
+              <object class="GtkAlignment" id="alignment1">
                 <property name="visible">True</property>
                 <child>
-                  <widget class="GtkLabel" id="saldo">
+                  <object class="GtkLabel" id="saldo">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="use_markup">True</property>
-                  </widget>
+                  </object>
                 </child>
-              </widget>
+              </object>
               <packing>
                 <property name="left_attach">3</property>
                 <property name="right_attach">4</property>
@@ -158,15 +177,15 @@ member</property>
               </packing>
             </child>
             <child>
-              <widget class="GtkAlignment" id="alignment2">
+              <object class="GtkAlignment" id="alignment2">
                 <property name="visible">True</property>
                 <child>
-                  <widget class="GtkLabel" id="saldo_label">
+                  <object class="GtkLabel" id="saldo_label">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                  </widget>
+                  </object>
                 </child>
-              </widget>
+              </object>
               <packing>
                 <property name="left_attach">2</property>
                 <property name="right_attach">3</property>
@@ -174,13 +193,13 @@ member</property>
                 <property name="bottom_attach">2</property>
               </packing>
             </child>
-          </widget>
+          </object>
           <packing>
             <property name="expand">False</property>
           </packing>
         </child>
         <child>
-          <widget class="GtkScrolledWindow" id="scrolledwindow1">
+          <object class="GtkScrolledWindow" id="scrolledwindow1">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="border_width">6</property>
@@ -188,54 +207,52 @@ member</property>
             <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
             <property name="shadow_type">GTK_SHADOW_IN</property>
             <child>
-              <widget class="GtkTreeView" id="list">
+              <object class="GtkTreeView" id="list">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="reorderable">True</property>
-              </widget>
+              </object>
             </child>
-          </widget>
+          </object>
           <packing>
             <property name="position">1</property>
           </packing>
         </child>
         <child>
-          <widget class="GtkHBox" id="hbox1">
+          <object class="GtkHBox" id="hbox1">
             <property name="visible">True</property>
             <property name="border_width">6</property>
             <child>
-              <widget class="GtkVBox" id="vbox2">
+              <object class="GtkVBox" id="vbox2">
                 <property name="visible">True</property>
                 <child>
-                  <widget class="GtkButton" id="remove">
+                  <object class="GtkButton" id="remove">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="label">gtk-remove</property>
                     <property name="use_stock">True</property>
-                    <property name="response_id">0</property>
-                    <signal name="clicked" handler="delete_clicked"/>
-                  </widget>
+                    <signal handler="delete_clicked" name="clicked"/>
+                  </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkButton" id="clear">
+                  <object class="GtkButton" id="clear">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                     <property name="label" translatable="yes">gtk-clear</property>
                     <property name="use_stock">True</property>
-                    <property name="response_id">0</property>
-                    <signal name="clicked" handler="clear_clicked"/>
-                  </widget>
+                    <signal handler="clear_clicked" name="clicked"/>
+                  </object>
                   <packing>
                     <property name="position">1</property>
                   </packing>
                 </child>
-              </widget>
+              </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
@@ -245,144 +262,144 @@ member</property>
               <placeholder/>
             </child>
             <child>
-              <widget class="GtkTable" id="table2">
+              <object class="GtkTable" id="table2">
                 <property name="visible">True</property>
                 <property name="n_rows">3</property>
                 <property name="n_columns">3</property>
                 <property name="column_spacing">6</property>
                 <property name="row_spacing">3</property>
                 <child>
-                  <widget class="GtkEntry" id="change">
+                  <object class="GtkEntry" id="change">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="editable">False</property>
                     <property name="has_frame">False</property>
                     <property name="width_chars">9</property>
-                  </widget>
+                  </object>
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="right_attach">2</property>
                     <property name="top_attach">2</property>
                     <property name="bottom_attach">3</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkEntry" id="paid">
+                  <object class="GtkEntry" id="paid">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="has_frame">False</property>
                     <property name="width_chars">9</property>
-                    <signal name="changed" handler="price_entries_changed"/>
-                  </widget>
+                    <signal handler="price_entries_changed" name="changed"/>
+                  </object>
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="right_attach">2</property>
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkEntry" id="total">
+                  <object class="GtkEntry" id="total">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="editable">False</property>
                     <property name="has_frame">False</property>
                     <property name="width_chars">9</property>
                     <property name="text" translatable="yes">0.00</property>
-                    <signal name="changed" handler="price_entries_changed"/>
-                  </widget>
+                    <signal handler="price_entries_changed" name="changed"/>
+                  </object>
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="right_attach">2</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkLabel" id="label14">
+                  <object class="GtkLabel" id="label14">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="label" translatable="yes">Terug:</property>
-                  </widget>
+                  </object>
                   <packing>
                     <property name="top_attach">2</property>
                     <property name="bottom_attach">3</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkLabel" id="label13">
+                  <object class="GtkLabel" id="label13">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="label" translatable="yes">Betaald:</property>
-                  </widget>
+                  </object>
                   <packing>
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkLabel" id="label12">
+                  <object class="GtkLabel" id="label12">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="label" translatable="yes">Totaal:</property>
-                  </widget>
+                  </object>
                   <packing>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkLabel" id="label11">
+                  <object class="GtkLabel" id="label11">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">€</property>
-                  </widget>
+                    <property name="label" translatable="yes">&#x20AC;</property>
+                  </object>
                   <packing>
                     <property name="left_attach">2</property>
                     <property name="right_attach">3</property>
                     <property name="top_attach">2</property>
                     <property name="bottom_attach">3</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkLabel" id="label10">
+                  <object class="GtkLabel" id="label10">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">€</property>
-                  </widget>
+                    <property name="label" translatable="yes">&#x20AC;</property>
+                  </object>
                   <packing>
                     <property name="left_attach">2</property>
                     <property name="right_attach">3</property>
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkLabel" id="label9">
+                  <object class="GtkLabel" id="label9">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">€</property>
-                  </widget>
+                    <property name="label" translatable="yes">&#x20AC;</property>
+                  </object>
                   <packing>
                     <property name="left_attach">2</property>
                     <property name="right_attach">3</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
-              </widget>
+              </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="padding">6</property>
@@ -390,42 +407,40 @@ member</property>
                 <property name="position">2</property>
               </packing>
             </child>
-          </widget>
+          </object>
           <packing>
             <property name="expand">False</property>
             <property name="position">2</property>
           </packing>
         </child>
         <child>
-          <widget class="GtkHButtonBox" id="hbuttonbox1">
+          <object class="GtkHButtonBox" id="hbuttonbox1">
             <property name="visible">True</property>
             <property name="border_width">6</property>
             <property name="spacing">6</property>
             <property name="homogeneous">True</property>
             <property name="layout_style">GTK_BUTTONBOX_END</property>
             <child>
-              <widget class="GtkButton" id="kaching1">
+              <object class="GtkButton" id="kaching1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="label" translatable="yes">_KaChing!</property>
                 <property name="use_underline">True</property>
                 <property name="focus_on_click">False</property>
-                <property name="response_id">0</property>
-                <signal name="clicked" handler="kaching_clicked"/>
-              </widget>
+                <signal handler="kaching_clicked" name="clicked"/>
+              </object>
             </child>
             <child>
-              <widget class="GtkButton" id="scribble">
+              <object class="GtkButton" id="scribble">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="label" translatable="yes">Scribb_le</property>
                 <property name="use_underline">True</property>
                 <property name="focus_on_click">False</property>
-                <property name="response_id">0</property>
-                <signal name="clicked" handler="scribble_clicked"/>
-              </widget>
+                <signal handler="scribble_clicked" name="clicked"/>
+              </object>
               <packing>
                 <property name="position">1</property>
               </packing>
@@ -434,27 +449,26 @@ member</property>
               <placeholder/>
             </child>
             <child>
-              <widget class="GtkButton" id="print1">
+              <object class="GtkButton" id="print1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="label" translatable="yes">_Verkoopsnota</property>
                 <property name="use_underline">True</property>
                 <property name="focus_on_click">False</property>
-                <property name="response_id">0</property>
-                <signal name="clicked" handler="bewijs"/>
-              </widget>
+                <signal handler="bewijs" name="clicked"/>
+              </object>
               <packing>
                 <property name="position">3</property>
               </packing>
             </child>
-          </widget>
+          </object>
           <packing>
             <property name="expand">False</property>
             <property name="position">3</property>
           </packing>
         </child>
-      </widget>
+      </object>
     </child>
-  </widget>
-</glade-interface>
+  </object>
+</interface>

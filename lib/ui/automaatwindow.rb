@@ -27,14 +27,14 @@ module Ig3tool
 		]
 
 		def initialize
-			super("vendingmachine.glade")
+			super("vendingmachine.xml")
 
-			@notification = @glade.get_widget("notification")
+			@notification = @glade.get_object("notification")
 
 			@entries = [ ]
 
-			[[LEFTCOL,  @glade.get_widget("blikjes_table")],
-				[RIGHTCOL, @glade.get_widget("flesjes_table")]].
+			[[LEFTCOL,  @glade.get_object("blikjes_table")],
+				[RIGHTCOL, @glade.get_object("flesjes_table")]].
 				each do |list, table|
 				table.resize(list.length, 2)
 				list.each_with_index do |(name, barcode), i|
@@ -49,7 +49,7 @@ module Ig3tool
 				end
 				end
 
-			@debuggers = @glade.get_widget("debuggers")
+			@debuggers = @glade.get_object("debuggers")
 			make_debugger_combo(@debuggers)
 
 			@window.show_all

@@ -1,8 +1,36 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
+<?xml version="1.0"?>
 <!--*- mode: xml -*-->
-<glade-interface>
-  <widget class="GtkWindow" id="window">
+<interface>
+  <object class="GtkListStore" id="model1">
+    <columns>
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">Opbrengst</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Kost</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="model2">
+    <columns>
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">user</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">debugger</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">all</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkWindow" id="window">
     <property name="visible">True</property>
     <property name="can_focus">True</property>
     <property name="title" translatable="yes">Penningtool</property>
@@ -10,66 +38,71 @@
     <property name="default_height">600</property>
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
     <child>
-      <widget class="GtkHBox" id="hbox1">
+      <object class="GtkHBox" id="hbox1">
         <property name="visible">True</property>
         <child>
-          <widget class="GtkNotebook" id="notebook1">
+          <object class="GtkNotebook" id="notebook1">
             <property name="width_request">3</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <child>
-              <widget class="GtkHBox" id="hbox2">
+              <object class="GtkHBox" id="hbox2">
                 <property name="visible">True</property>
                 <child>
-                  <widget class="GtkScrolledWindow" id="scrolledwindow5">
+                  <object class="GtkScrolledWindow" id="scrolledwindow5">
                     <property name="width_request">125</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                     <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                     <child>
-                      <widget class="GtkTreeView" id="dabe_menu">
+                      <object class="GtkTreeView" id="dabe_menu">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="border_width">6</property>
                         <property name="headers_visible">False</property>
-                        <signal name="cursor_changed" handler="on_dabe_menu_cursor_changed"/>
-                      </widget>
+                        <signal handler="on_dabe_menu_cursor_changed" name="cursor_changed"/>
+                      </object>
                     </child>
-                  </widget>
+                  </object>
                   <packing>
                     <property name="expand">False</property>
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkVBox" id="vbox4">
+                  <object class="GtkVBox" id="vbox4">
                     <property name="visible">True</property>
                     <child>
-                      <widget class="GtkScrolledWindow" id="kosten_opbrengsten">
+                      <object class="GtkScrolledWindow" id="kosten_opbrengsten">
                         <property name="can_focus">True</property>
                         <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                         <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                         <child>
-                          <widget class="GtkViewport" id="viewport3">
+                          <object class="GtkViewport" id="viewport3">
                             <property name="visible">True</property>
                             <child>
-                              <widget class="GtkVBox" id="vbox8">
+                              <object class="GtkVBox" id="vbox8">
                                 <property name="visible">True</property>
                                 <property name="border_width">6</property>
                                 <property name="spacing">12</property>
                                 <child>
-                                  <widget class="GtkTable" id="table1">
+                                  <object class="GtkTable" id="table1">
                                     <property name="visible">True</property>
                                     <property name="n_rows">3</property>
                                     <property name="n_columns">4</property>
                                     <property name="column_spacing">6</property>
                                     <property name="row_spacing">6</property>
                                     <child>
-                                      <widget class="GtkComboBox" id="dabe_ko_status">
+                                      <object class="GtkComboBox" id="dabe_ko_status">
                                         <property name="visible">True</property>
-                                        <property name="items" translatable="yes">Opbrengst
-Kost</property>
-                                      </widget>
+                                        <property name="model">model1</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="renderer1"/>
+                                          <attributes>
+                                            <attribute name="text">0</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
                                       <packing>
                                         <property name="left_attach">3</property>
                                         <property name="right_attach">4</property>
@@ -80,135 +113,135 @@ Kost</property>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkLabel" id="label27">
+                                      <object class="GtkLabel" id="label27">
                                         <property name="visible">True</property>
                                         <property name="xalign">0</property>
-                                      </widget>
+                                      </object>
                                       <packing>
                                         <property name="left_attach">2</property>
                                         <property name="right_attach">3</property>
                                         <property name="top_attach">2</property>
                                         <property name="bottom_attach">3</property>
                                         <property name="x_options">GTK_FILL</property>
-                                        <property name="y_options"></property>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkEntry" id="dabe_ko_referentie">
+                                      <object class="GtkEntry" id="dabe_ko_referentie">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="invisible_char">*</property>
-                                      </widget>
+                                      </object>
                                       <packing>
                                         <property name="left_attach">3</property>
                                         <property name="right_attach">4</property>
                                         <property name="top_attach">1</property>
                                         <property name="bottom_attach">2</property>
-                                        <property name="y_options"></property>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkEntry" id="dabe_ko_datum">
+                                      <object class="GtkEntry" id="dabe_ko_datum">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="invisible_char">*</property>
-                                      </widget>
+                                      </object>
                                       <packing>
                                         <property name="left_attach">3</property>
                                         <property name="right_attach">4</property>
-                                        <property name="y_options"></property>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkEntry" id="dabe_ko_bedrag">
+                                      <object class="GtkEntry" id="dabe_ko_bedrag">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="invisible_char">*</property>
-                                      </widget>
+                                      </object>
                                       <packing>
                                         <property name="left_attach">1</property>
                                         <property name="right_attach">2</property>
                                         <property name="top_attach">2</property>
                                         <property name="bottom_attach">3</property>
-                                        <property name="y_options"></property>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkEntry" id="dabe_ko_omschrijving">
+                                      <object class="GtkEntry" id="dabe_ko_omschrijving">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="invisible_char">*</property>
-                                      </widget>
+                                      </object>
                                       <packing>
                                         <property name="left_attach">1</property>
                                         <property name="right_attach">2</property>
                                         <property name="top_attach">1</property>
                                         <property name="bottom_attach">2</property>
-                                        <property name="y_options"></property>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkLabel" id="label26">
+                                      <object class="GtkLabel" id="label26">
                                         <property name="visible">True</property>
                                         <property name="xalign">0</property>
                                         <property name="label" translatable="yes">Referentie: </property>
-                                      </widget>
+                                      </object>
                                       <packing>
                                         <property name="left_attach">2</property>
                                         <property name="right_attach">3</property>
                                         <property name="top_attach">1</property>
                                         <property name="bottom_attach">2</property>
                                         <property name="x_options">GTK_FILL</property>
-                                        <property name="y_options"></property>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkLabel" id="label25">
+                                      <object class="GtkLabel" id="label25">
                                         <property name="visible">True</property>
                                         <property name="xalign">0</property>
                                         <property name="label" translatable="yes">Bedrag: </property>
-                                      </widget>
+                                      </object>
                                       <packing>
                                         <property name="top_attach">2</property>
                                         <property name="bottom_attach">3</property>
                                         <property name="x_options">GTK_FILL</property>
-                                        <property name="y_options"></property>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkLabel" id="label24">
+                                      <object class="GtkLabel" id="label24">
                                         <property name="visible">True</property>
                                         <property name="xalign">0</property>
                                         <property name="label" translatable="yes">Omschrijving: </property>
-                                      </widget>
+                                      </object>
                                       <packing>
                                         <property name="top_attach">1</property>
                                         <property name="bottom_attach">2</property>
                                         <property name="x_options">GTK_FILL</property>
-                                        <property name="y_options"></property>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkLabel" id="label23">
+                                      <object class="GtkLabel" id="label23">
                                         <property name="visible">True</property>
                                         <property name="xalign">0</property>
                                         <property name="label" translatable="yes">Datum: </property>
-                                      </widget>
+                                      </object>
                                       <packing>
                                         <property name="left_attach">2</property>
                                         <property name="right_attach">3</property>
                                         <property name="x_options">GTK_FILL</property>
-                                        <property name="y_options"></property>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkComboBoxEntry" id="dabe_ko_categorie">
+                                      <object class="GtkComboBoxEntry" id="dabe_ko_categorie">
                                         <property name="visible">True</property>
                                         <child internal-child="entry">
-                                          <widget class="GtkEntry" id="comboboxentry-entry1">
-                                          </widget>
+                                          <object class="GtkEntry" id="comboboxentry-entry1">
+                                          </object>
                                         </child>
-                                      </widget>
+                                      </object>
                                       <packing>
                                         <property name="left_attach">1</property>
                                         <property name="right_attach">2</property>
@@ -217,50 +250,50 @@ Kost</property>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkLabel" id="label19">
+                                      <object class="GtkLabel" id="label19">
                                         <property name="visible">True</property>
                                         <property name="xalign">0</property>
                                         <property name="label" translatable="yes">Categorie: </property>
-                                      </widget>
+                                      </object>
                                       <packing>
                                         <property name="x_options">GTK_FILL</property>
-                                        <property name="y_options"></property>
+                                        <property name="y_options"/>
                                       </packing>
                                     </child>
-                                  </widget>
+                                  </object>
                                   <packing>
                                     <property name="expand">False</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkHButtonBox" id="hbuttonbox1">
+                                  <object class="GtkHButtonBox" id="hbuttonbox1">
                                     <property name="visible">True</property>
                                     <property name="layout_style">GTK_BUTTONBOX_END</property>
                                     <child>
-                                      <widget class="GtkButton" id="dabe_ko_lookup">
+                                      <object class="GtkButton" id="dabe_ko_lookup">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="can_default">True</property>
                                         <property name="border_width">6</property>
                                         <property name="label" translatable="yes">Lookup</property>
                                         <property name="use_underline">True</property>
-                                      </widget>
+                                      </object>
                                     </child>
                                     <child>
-                                      <widget class="GtkButton" id="dabe_ko_update">
+                                      <object class="GtkButton" id="dabe_ko_update">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="can_default">True</property>
                                         <property name="border_width">6</property>
                                         <property name="label" translatable="yes">Update</property>
                                         <property name="use_underline">True</property>
-                                      </widget>
+                                      </object>
                                       <packing>
                                         <property name="position">1</property>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkButton" id="dabe_ko_add">
+                                      <object class="GtkButton" id="dabe_ko_add">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="can_default">True</property>
@@ -268,297 +301,297 @@ Kost</property>
                                         <property name="border_width">6</property>
                                         <property name="label" translatable="yes">Add</property>
                                         <property name="use_underline">True</property>
-                                      </widget>
+                                      </object>
                                       <packing>
                                         <property name="position">2</property>
                                       </packing>
                                     </child>
-                                  </widget>
+                                  </object>
                                   <packing>
                                     <property name="expand">False</property>
                                     <property name="position">1</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkScrolledWindow" id="scrolledwindow10">
+                                  <object class="GtkScrolledWindow" id="scrolledwindow10">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                                     <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                                     <child>
-                                      <widget class="GtkTreeView" id="dabe_ko_items">
+                                      <object class="GtkTreeView" id="dabe_ko_items">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
-                                      </widget>
+                                      </object>
                                     </child>
-                                  </widget>
+                                  </object>
                                   <packing>
                                     <property name="position">2</property>
                                   </packing>
                                 </child>
-                              </widget>
+                              </object>
                             </child>
-                          </widget>
+                          </object>
                         </child>
-                      </widget>
+                      </object>
                     </child>
                     <child>
-                      <widget class="GtkScrolledWindow" id="printkrediet">
+                      <object class="GtkScrolledWindow" id="printkrediet">
                         <property name="can_focus">True</property>
                         <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                         <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                         <child>
-                          <widget class="GtkViewport" id="viewport5">
+                          <object class="GtkViewport" id="viewport5">
                             <property name="visible">True</property>
                             <child>
-                              <widget class="GtkVBox" id="vbox9">
+                              <object class="GtkVBox" id="vbox9">
                                 <property name="visible">True</property>
                                 <property name="border_width">6</property>
                                 <child>
-                                  <widget class="GtkHBox" id="hbox3">
+                                  <object class="GtkHBox" id="hbox3">
                                     <property name="visible">True</property>
                                     <property name="border_width">6</property>
                                     <property name="spacing">6</property>
                                     <child>
-                                      <widget class="GtkLabel" id="label28">
+                                      <object class="GtkLabel" id="label28">
                                         <property name="visible">True</property>
                                         <property name="label" translatable="yes">Zoek: </property>
-                                      </widget>
+                                      </object>
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="fill">False</property>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkEntry" id="dabe_pr_zoek">
+                                      <object class="GtkEntry" id="dabe_pr_zoek">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="invisible_char">*</property>
-                                      </widget>
+                                      </object>
                                       <packing>
                                         <property name="position">1</property>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkVSeparator" id="vseparator1">
+                                      <object class="GtkVSeparator" id="vseparator1">
                                         <property name="visible">True</property>
-                                      </widget>
+                                      </object>
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="position">2</property>
                                       </packing>
                                     </child>
                                     <child>
-                                      <widget class="GtkComboBoxEntry" id="dabe_pr_status">
+                                      <object class="GtkComboBoxEntry" id="dabe_pr_status">
                                         <property name="visible">True</property>
-                                        <property name="items" translatable="yes">user
-debugger
-all</property>
                                         <child internal-child="entry">
-                                          <widget class="GtkEntry" id="comboboxentry-entry2">
-                                          </widget>
+                                          <object class="GtkEntry" id="comboboxentry-entry2">
+                                          </object>
                                         </child>
-                                      </widget>
+                                        <property name="model">model2</property>
+                                        <child>
+                                          <object class="GtkCellRendererText" id="renderer2"/>
+                                          <attributes>
+                                            <attribute name="text">0</attribute>
+                                          </attributes>
+                                        </child>
+                                      </object>
                                       <packing>
                                         <property name="expand">False</property>
                                         <property name="fill">False</property>
                                         <property name="position">3</property>
                                       </packing>
                                     </child>
-                                  </widget>
+                                  </object>
                                   <packing>
                                     <property name="expand">False</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkScrolledWindow" id="window7">
+                                  <object class="GtkScrolledWindow" id="window7">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                                     <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                                     <child>
-                                      <widget class="GtkTreeView" id="dabe_pr_list">
+                                      <object class="GtkTreeView" id="dabe_pr_list">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="border_width">6</property>
                                         <property name="reorderable">True</property>
-                                      </widget>
+                                      </object>
                                     </child>
-                                  </widget>
+                                  </object>
                                   <packing>
                                     <property name="position">1</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <widget class="GtkHButtonBox" id="hbuttonbox2">
+                                  <object class="GtkHButtonBox" id="hbuttonbox2">
                                     <property name="visible">True</property>
                                     <property name="border_width">6</property>
                                     <property name="spacing">6</property>
                                     <property name="layout_style">GTK_BUTTONBOX_END</property>
                                     <child>
-                                      <widget class="GtkButton" id="dabe_pr_verreken_printkrediet">
+                                      <object class="GtkButton" id="dabe_pr_verreken_printkrediet">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="can_default">True</property>
                                         <property name="label" translatable="yes">Verreken Printkrediet</property>
                                         <property name="use_underline">True</property>
-                                      </widget>
+                                      </object>
                                     </child>
                                     <child>
-                                      <widget class="GtkButton" id="dabe_pr_refresh">
+                                      <object class="GtkButton" id="dabe_pr_refresh">
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
                                         <property name="can_default">True</property>
                                         <property name="label" translatable="yes">Refresh</property>
                                         <property name="use_underline">True</property>
-                                      </widget>
+                                      </object>
                                       <packing>
                                         <property name="position">1</property>
                                       </packing>
                                     </child>
-                                  </widget>
+                                  </object>
                                   <packing>
                                     <property name="expand">False</property>
                                     <property name="position">2</property>
                                   </packing>
                                 </child>
-                              </widget>
+                              </object>
                             </child>
-                          </widget>
+                          </object>
                         </child>
-                      </widget>
+                      </object>
                       <packing>
                         <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
-                      <widget class="GtkScrolledWindow" id="stocktelling">
+                      <object class="GtkScrolledWindow" id="stocktelling">
                         <property name="can_focus">True</property>
                         <property name="border_width">6</property>
                         <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                         <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                         <child>
-                          <widget class="GtkViewport" id="viewport6">
+                          <object class="GtkViewport" id="viewport6">
                             <property name="visible">True</property>
                             <child>
-                              <widget class="GtkScrolledWindow" id="scrolledwindow11">
+                              <object class="GtkScrolledWindow" id="scrolledwindow11">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                                 <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                                 <child>
-                                  <widget class="GtkViewport" id="viewport7">
+                                  <object class="GtkViewport" id="viewport7">
                                     <property name="visible">True</property>
                                     <child>
-                                      <widget class="GtkVBox" id="vbox10">
+                                      <object class="GtkVBox" id="vbox10">
                                         <property name="visible">True</property>
                                         <child>
-                                          <widget class="GtkScrolledWindow" id="scrolledwindow13">
+                                          <object class="GtkScrolledWindow" id="scrolledwindow13">
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                                             <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                                             <child>
-                                              <widget class="GtkTreeView" id="dabe_stock_items">
+                                              <object class="GtkTreeView" id="dabe_stock_items">
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
                                                 <property name="reorderable">True</property>
-                                              </widget>
+                                              </object>
                                             </child>
-                                          </widget>
+                                          </object>
                                         </child>
                                         <child>
-                                          <widget class="GtkHButtonBox" id="hbuttonbox3">
+                                          <object class="GtkHButtonBox" id="hbuttonbox3">
                                             <property name="visible">True</property>
                                             <property name="border_width">6</property>
                                             <property name="spacing">6</property>
                                             <property name="layout_style">GTK_BUTTONBOX_END</property>
                                             <child>
-                                              <widget class="GtkButton" id="bade_stock_update">
+                                              <object class="GtkButton" id="bade_stock_update">
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
                                                 <property name="can_default">True</property>
                                                 <property name="label" translatable="yes">Update</property>
                                                 <property name="use_underline">True</property>
-                                              </widget>
+                                              </object>
                                             </child>
                                             <child>
-                                              <widget class="GtkButton" id="dabe_stock_refresh">
+                                              <object class="GtkButton" id="dabe_stock_refresh">
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
                                                 <property name="can_default">True</property>
                                                 <property name="label" translatable="yes">Refresh</property>
                                                 <property name="use_underline">True</property>
-                                              </widget>
+                                              </object>
                                               <packing>
                                                 <property name="position">1</property>
                                               </packing>
                                             </child>
-                                          </widget>
+                                          </object>
                                           <packing>
                                             <property name="expand">False</property>
                                             <property name="position">1</property>
                                           </packing>
                                         </child>
-                                      </widget>
+                                      </object>
                                     </child>
-                                  </widget>
+                                  </object>
                                 </child>
-                              </widget>
+                              </object>
                             </child>
-                          </widget>
+                          </object>
                         </child>
-                      </widget>
+                      </object>
                       <packing>
                         <property name="position">2</property>
                       </packing>
                     </child>
-                  </widget>
+                  </object>
                   <packing>
                     <property name="position">1</property>
                   </packing>
                 </child>
-              </widget>
-              <packing>
-                <property name="tab_expand">False</property>
-              </packing>
+              </object>
             </child>
-            <child>
-              <widget class="GtkLabel" id="label18">
+            <child type="tab">
+              <object class="GtkLabel" id="label18">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">Dagelijkse Bezigheden</property>
-              </widget>
+              </object>
               <packing>
-                <property name="type">tab</property>
                 <property name="tab_expand">False</property>
                 <property name="tab_fill">False</property>
               </packing>
             </child>
             <child>
-              <widget class="GtkVBox" id="vbox1">
+              <object class="GtkVBox" id="vbox1">
                 <property name="visible">True</property>
                 <child>
-                  <widget class="GtkVBox" id="vbox2">
+                  <object class="GtkVBox" id="vbox2">
                     <property name="visible">True</property>
                     <child>
-                      <widget class="GtkVBox" id="vbox3">
+                      <object class="GtkVBox" id="vbox3">
                         <property name="visible">True</property>
                         <child>
-                          <widget class="GtkHPaned" id="hpaned2">
+                          <object class="GtkHPaned" id="hpaned2">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <child>
-                              <widget class="GtkScrolledWindow" id="scrolledwindow2">
+                              <object class="GtkScrolledWindow" id="scrolledwindow2">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <child>
-                                  <widget class="GtkTreeView" id="treeview2">
+                                  <object class="GtkTreeView" id="treeview2">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="headers_visible">False</property>
-                                  </widget>
+                                  </object>
                                 </child>
-                              </widget>
+                              </object>
                               <packing>
                                 <property name="resize">False</property>
                               </packing>
@@ -566,166 +599,158 @@ all</property>
                             <child>
                               <placeholder/>
                             </child>
-                          </widget>
+                          </object>
                         </child>
-                      </widget>
+                      </object>
                     </child>
-                  </widget>
+                  </object>
                 </child>
-              </widget>
+              </object>
               <packing>
                 <property name="position">1</property>
                 <property name="tab_expand">False</property>
               </packing>
             </child>
-            <child>
-              <widget class="GtkLabel" id="statistieken">
+            <child type="tab">
+              <object class="GtkLabel" id="statistieken">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">Statistieken</property>
-              </widget>
+              </object>
               <packing>
-                <property name="type">tab</property>
                 <property name="position">1</property>
                 <property name="tab_expand">False</property>
                 <property name="tab_fill">False</property>
               </packing>
             </child>
             <child>
-              <widget class="GtkScrolledWindow" id="scrolledwindow15">
+              <object class="GtkScrolledWindow" id="scrolledwindow15">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                 <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                 <child>
-                  <widget class="GtkViewport" id="viewport8">
+                  <object class="GtkViewport" id="viewport8">
                     <property name="visible">True</property>
                     <child>
-                      <widget class="GtkVBox" id="vbox11">
+                      <object class="GtkVBox" id="vbox11">
                         <property name="visible">True</property>
                         <child>
-                          <widget class="GtkExpander" id="expander3">
+                          <object class="GtkExpander" id="expander3">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="expanded">True</property>
                             <child>
-                              <widget class="GtkScrolledWindow" id="scrolledwindow16">
+                              <object class="GtkScrolledWindow" id="scrolledwindow16">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="border_width">5</property>
                                 <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                                 <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                                 <child>
-                                  <widget class="GtkTreeView" id="jv_balans">
+                                  <object class="GtkTreeView" id="jv_balans">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
-                                  </widget>
+                                  </object>
                                 </child>
-                              </widget>
+                              </object>
                             </child>
-                            <child>
-                              <widget class="GtkLabel" id="jv_balanstab">
+                            <child type="label">
+                              <object class="GtkLabel" id="jv_balanstab">
                                 <property name="visible">True</property>
                                 <property name="label" translatable="yes">Balans</property>
-                              </widget>
-                              <packing>
-                                <property name="type">label_item</property>
-                              </packing>
+                              </object>
                             </child>
-                          </widget>
+                          </object>
                         </child>
                         <child>
-                          <widget class="GtkExpander" id="expander4">
+                          <object class="GtkExpander" id="expander4">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="expanded">True</property>
                             <child>
-                              <widget class="GtkScrolledWindow" id="scrolledwindow17">
+                              <object class="GtkScrolledWindow" id="scrolledwindow17">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="border_width">6</property>
                                 <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                                 <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                                 <child>
-                                  <widget class="GtkTreeView" id="jv_resultatenrekening">
+                                  <object class="GtkTreeView" id="jv_resultatenrekening">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
-                                  </widget>
+                                  </object>
                                 </child>
-                              </widget>
+                              </object>
                             </child>
-                            <child>
-                              <widget class="GtkLabel" id="jv_resultatenrekeningtab">
+                            <child type="label">
+                              <object class="GtkLabel" id="jv_resultatenrekeningtab">
                                 <property name="visible">True</property>
                                 <property name="label" translatable="yes">Resultaten Rekening</property>
-                              </widget>
-                              <packing>
-                                <property name="type">label_item</property>
-                              </packing>
+                              </object>
                             </child>
-                          </widget>
+                          </object>
                           <packing>
                             <property name="position">1</property>
                           </packing>
                         </child>
                         <child>
-                          <widget class="GtkHButtonBox" id="hbuttonbox4">
+                          <object class="GtkHButtonBox" id="hbuttonbox4">
                             <property name="visible">True</property>
                             <property name="layout_style">GTK_BUTTONBOX_END</property>
                             <child>
-                              <widget class="GtkButton" id="jv_export">
+                              <object class="GtkButton" id="jv_export">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="can_default">True</property>
                                 <property name="border_width">6</property>
                                 <property name="label" translatable="yes">Export</property>
                                 <property name="use_underline">True</property>
-                              </widget>
+                              </object>
                             </child>
                             <child>
-                              <widget class="GtkButton" id="jv_save">
+                              <object class="GtkButton" id="jv_save">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="can_default">True</property>
                                 <property name="border_width">6</property>
                                 <property name="label" translatable="yes">(Save)</property>
                                 <property name="use_underline">True</property>
-                              </widget>
+                              </object>
                               <packing>
                                 <property name="position">1</property>
                               </packing>
                             </child>
-                          </widget>
+                          </object>
                           <packing>
                             <property name="expand">False</property>
                             <property name="pack_type">GTK_PACK_END</property>
                             <property name="position">2</property>
                           </packing>
                         </child>
-                      </widget>
+                      </object>
                     </child>
-                  </widget>
+                  </object>
                 </child>
-              </widget>
+              </object>
               <packing>
                 <property name="position">2</property>
                 <property name="tab_expand">False</property>
               </packing>
             </child>
-            <child>
-              <widget class="GtkLabel" id="jaarverslag">
+            <child type="tab">
+              <object class="GtkLabel" id="jaarverslag">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">Jaarverslag</property>
-              </widget>
+              </object>
               <packing>
-                <property name="type">tab</property>
                 <property name="position">2</property>
                 <property name="tab_expand">False</property>
                 <property name="tab_fill">False</property>
               </packing>
             </child>
-          </widget>
+          </object>
         </child>
-      </widget>
+      </object>
     </child>
-  </widget>
-</glade-interface>
+  </object>
+</interface>

@@ -15,31 +15,31 @@ module Ig3tool
     attr :glade
 
     def initialize
-      super("people.glade")
+      super("people.xml")
 
-      @username = @glade.get_widget("username")
-      @firstname = @glade.get_widget("firstname")
-      @lastname = @glade.get_widget("lastname")
-      @barcode = @glade.get_widget("barcode")
-      @email = @glade.get_widget("email")
-      @notification = @glade.get_widget("errorfield")
-      @status = @glade.get_widget("status")
-      @mobile = @glade.get_widget("mobile")
-      @address1 = @glade.get_widget("address1")
-      @address2 = @glade.get_widget("address2")
-      @phone = @glade.get_widget("phone")
-      @rolnummer = @glade.get_widget("rolnummer")
+      @username = @glade.get_object("username")
+      @firstname = @glade.get_object("firstname")
+      @lastname = @glade.get_object("lastname")
+      @barcode = @glade.get_object("barcode")
+      @email = @glade.get_object("email")
+      @notification = @glade.get_object("errorfield")
+      @status = @glade.get_object("status")
+      @mobile = @glade.get_object("mobile")
+      @address1 = @glade.get_object("address1")
+      @address2 = @glade.get_object("address2")
+      @phone = @glade.get_object("phone")
+      @rolnummer = @glade.get_object("rolnummer")
 
-      @statussearch = @glade.get_widget("statussearch")
+      @statussearch = @glade.get_object("statussearch")
 
-      @people_view = _@glade.get_widget("names")
+      @people_view = _@glade.get_object("names")
       @people_view.model = @people_store = Gtk::ListStore.new(Object, String)
       r = Gtk::CellRendererText.new
       @people_view.insert_column(-1, "name", r, :text => 1)
       @people_view.enable_search = true
 
 
-      @history    = @glade.get_widget("history")
+      @history    = @glade.get_object("history")
       @history.model = @history_store = Gtk::ListStore.new(Object, String, String, String, String)
       ll = Gtk::CellRendererText.new
       @history.insert_column(-1, "year", ll) do |tvc, cell, m ,iter|
@@ -131,7 +131,7 @@ module Ig3tool
 
       ALLFIELDS.each do |k|
         #v = _get_widget(k).text.strip
-        v = @glade.get_widget(k).text.strip
+        v = @glade.get_object(k).text.strip
         fld = fix(k)
         attrs[fld] = v unless v.nil? or v.empty?
       end
@@ -178,7 +178,7 @@ module Ig3tool
 
       FIELDS.each do |k|
         #v = _get_widget(k).text.strip
-        v = @glade.get_widget(k).text.strip
+        v = @glade.get_object(k).text.strip
         fld = fix(k)
         attrs[fld] = v unless v.nil? or v.empty?
       end

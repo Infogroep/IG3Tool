@@ -19,26 +19,26 @@ class ProtjesGlade < GladeHelper
   attr :glade
   
 def initialize
-	super("protjes.glade")
-		@tabs = @glade.get_widget("tabs")
+	super("protjes.xml")
+		@tabs = @glade.get_object("tabs")
 
 		# MANAGE TAB
-		@manage_debuggers = @glade.get_widget("add_debuggers")
-		@manage_plebs = @glade.get_widget("add_plebs")
-		@manage_members = @glade.get_widget("add_members")
-		@manage_edit = @glade.get_widget("add_edit")
-		@add_notification = @glade.get_widget("add_notification")
-		@add_barcode = @glade.get_widget("add_barcode")
-		@add_name = @glade.get_widget("add_name")
-		@add_stock = @glade.get_widget("add_stock")
-		@add_prodcat = @glade.get_widget("add_prodcat")
-		@add_categories = @glade.get_widget("add_categories")
-		@continuous_stock = @glade.get_widget("continuous_stock_check")
+		@manage_debuggers = @glade.get_object("add_debuggers")
+		@manage_plebs = @glade.get_object("add_plebs")
+		@manage_members = @glade.get_object("add_members")
+		@manage_edit = @glade.get_object("add_edit")
+		@add_notification = @glade.get_object("add_notification")
+		@add_barcode = @glade.get_object("add_barcode")
+		@add_name = @glade.get_object("add_name")
+		@add_stock = @glade.get_object("add_stock")
+		@add_prodcat = @glade.get_object("add_prodcat")
+		@add_categories = @glade.get_object("add_categories")
+		@continuous_stock = @glade.get_object("continuous_stock_check")
 
 		@categories = $client.product_categories.collect {|x| x.name}.sort
 
 
-		@add_products = @glade.get_widget("add_products")
+		@add_products = @glade.get_object("add_products")
 		@add_products.model = @add_products_store = Gtk::ListStore.new(Object, String)
 		l = Gtk::CellRendererText.new
 		@add_products.insert_column(-1, "product", l, :text => 1)
@@ -47,61 +47,61 @@ def initialize
 		
 
 		# PURCHASE TAB
-		@purchase_debuggers_orig = @glade.get_widget("purchase_debuggers_orig")
-		@purchase_plebs_orig = @glade.get_widget("purchase_plebs_orig")
-		@purchase_members_orig = @glade.get_widget("purchase_members_orig")
-		@purchase_last = @glade.get_widget("purchase_last")
-		@purchase_debugger = @glade.get_widget("purchase_debugger")
-		@purchase_debuggers = @glade.get_widget("purchase_debuggers")
-		@purchase_plebs = @glade.get_widget("purchase_plebs")
-		@purchase_members = @glade.get_widget("purchase_members")
-		@purchase_barcode = @glade.get_widget("purchase_barcode")
-		@purchase_name = @glade.get_widget("purchase_name")
-		@purchase_stock = @glade.get_widget("purchase_stock")
-		@purchase_category = @glade.get_widget("purchase_category")
-		@purchase_categories = @glade.get_widget("purchase_categories")
-		@purchase_notification = @glade.get_widget("purchase_notification")
-		@purchase_amount = @glade.get_widget("purchase_amount")
-		@purchase_price = @glade.get_widget("purchase_price")
-		@purchase_date = @glade.get_widget("purchase_date")
-		@purchase_accept = @glade.get_widget("purchase_accept")
+		@purchase_debuggers_orig = @glade.get_object("purchase_debuggers_orig")
+		@purchase_plebs_orig = @glade.get_object("purchase_plebs_orig")
+		@purchase_members_orig = @glade.get_object("purchase_members_orig")
+		@purchase_last = @glade.get_object("purchase_last")
+		@purchase_debugger = @glade.get_object("purchase_debugger")
+		@purchase_debuggers = @glade.get_object("purchase_debuggers")
+		@purchase_plebs = @glade.get_object("purchase_plebs")
+		@purchase_members = @glade.get_object("purchase_members")
+		@purchase_barcode = @glade.get_object("purchase_barcode")
+		@purchase_name = @glade.get_object("purchase_name")
+		@purchase_stock = @glade.get_object("purchase_stock")
+		@purchase_category = @glade.get_object("purchase_category")
+		@purchase_categories = @glade.get_object("purchase_categories")
+		@purchase_notification = @glade.get_object("purchase_notification")
+		@purchase_amount = @glade.get_object("purchase_amount")
+		@purchase_price = @glade.get_object("purchase_price")
+		@purchase_date = @glade.get_object("purchase_date")
+		@purchase_accept = @glade.get_object("purchase_accept")
     
-		@purchase_products = @glade.get_widget("purchase_products")
+		@purchase_products = @glade.get_object("purchase_products")
 		@purchase_products.model = @purchase_products_store = Gtk::ListStore.new(Object, String)
 		l = Gtk::CellRendererText.new
 		@purchase_products.insert_column(-1, "product", l, :text => 1)
 		@purchase_products.enable_search = true
 
 		# STOCK TAB
-		@stock_notification = @glade.get_widget("stock_notification")
-		@stock_categories = @glade.get_widget("stock_categories")
-		@stock_barcode = @glade.get_widget("stock_barcode")
-		@stock_stock = @glade.get_widget("stock_stock")
-		@stock_category = @glade.get_widget("stock_category")
-		@stock_name = @glade.get_widget("stock_name")
-		@stock_debugger = @glade.get_widget("stock_debugger")
-		@stock_stock_new = @glade.get_widget("stock_stock_new")
-		@stock_apply = @glade.get_widget("stock_apply")
+		@stock_notification = @glade.get_object("stock_notification")
+		@stock_categories = @glade.get_object("stock_categories")
+		@stock_barcode = @glade.get_object("stock_barcode")
+		@stock_stock = @glade.get_object("stock_stock")
+		@stock_category = @glade.get_object("stock_category")
+		@stock_name = @glade.get_object("stock_name")
+		@stock_debugger = @glade.get_object("stock_debugger")
+		@stock_stock_new = @glade.get_object("stock_stock_new")
+		@stock_apply = @glade.get_object("stock_apply")
 		
-		@stock_products = @glade.get_widget("stock_products")
+		@stock_products = @glade.get_object("stock_products")
 		@stock_products.model = @stock_products_store = Gtk::ListStore.new(Object, String)
 		l = Gtk::CellRendererText.new
 		@stock_products.insert_column(-1, "product", l, :text => 1)
 		@stock_products.enable_search = true
 
 		# LOG TAB
-		@log_notification = @glade.get_widget("log_notification")
-		@log_categories = @glade.get_widget("log_categories")
-		@log_barcode = @glade.get_widget("log_barcode")
-		@log_name = @glade.get_widget("log_name")
-		@log_products = @glade.get_widget("log_products")
+		@log_notification = @glade.get_object("log_notification")
+		@log_categories = @glade.get_object("log_categories")
+		@log_barcode = @glade.get_object("log_barcode")
+		@log_name = @glade.get_object("log_name")
+		@log_products = @glade.get_object("log_products")
 		@log_products.model = @log_products_store = Gtk::ListStore.new(Object, String)
 		l = Gtk::CellRendererText.new
 		@log_products.insert_column(-1, "product", l, :text => 1)
 		@log_products.enable_search = true
 
 
-		@purchase_log = @glade.get_widget("purchase_log")
+		@purchase_log = @glade.get_object("purchase_log")
 		@purchase_log.model = @purchase_log_store = Gtk::ListStore.new(Object, String, String, String, String, String)
 		l = Gtk::CellRendererText.new
 		@purchase_log.insert_column(-1, "time", l) do |tvc, cell, m, iter|
@@ -121,18 +121,18 @@ def initialize
 		end
 
 		# sales LOG TAB
-		@slog_notification = @glade.get_widget("slog_notification")
-		@slog_categories = @glade.get_widget("slog_categories")
-		@slog_barcode = @glade.get_widget("slog_barcode")
-		@slog_name = @glade.get_widget("slog_name")
-		@slog_products = @glade.get_widget("slog_products")
+		@slog_notification = @glade.get_object("slog_notification")
+		@slog_categories = @glade.get_object("slog_categories")
+		@slog_barcode = @glade.get_object("slog_barcode")
+		@slog_name = @glade.get_object("slog_name")
+		@slog_products = @glade.get_object("slog_products")
 		@slog_products.model = @slog_products_store = Gtk::ListStore.new(Object, String)
 		l = Gtk::CellRendererText.new
 		@slog_products.insert_column(-1, "product", l, :text => 1)
 		@slog_products.enable_search = true
 
 
-		@spurchase_log = @glade.get_widget("spurchase_log")
+		@spurchase_log = @glade.get_object("spurchase_log")
 		@spurchase_log.model = @spurchase_log_store = Gtk::ListStore.new(Object, String, String, String, String, String, String)
 		l = Gtk::CellRendererText.new
 		@spurchase_log.insert_column(-1, "time", l) do |tvc, cell, m, iter|

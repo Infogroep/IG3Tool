@@ -9,12 +9,12 @@ module Ig3tool
 		attr :glade
 
 		def initialize(client, &block)
-      super("loginwindow.glade", "loginwindow")
+      super("loginwindow.xml", "loginwindow")
 
-			@username = @glade.get_widget("username")
-			@password = @glade.get_widget("password")
-			@apply    = @glade.get_widget("apply")
-			@loginwin = @glade.get_widget("loginwindow")
+			@username = @glade.get_object("username")
+			@password = @glade.get_object("password")
+			@apply    = @glade.get_object("apply")
+			@loginwin = @glade.get_object("loginwindow")
 			@success  = block
 
 		end

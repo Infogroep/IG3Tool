@@ -7,16 +7,16 @@ module Ig3tool
 
 		def initialize (gladefile, toplevel = "window")
 			filename = GLADE_DIR + gladefile
-                        puts filename
-			@glade = GladeXML.new(filename.to_s, toplevel) {|h| method(h) }
-			@window = @glade.get_widget(toplevel)
+			@glade = Gtk::Builder.new
+                        @glade.add_from_file(filename.to_s)
+                        @glade.connect_signals {|h| method(h) }
+			@window = @glade.get_object(toplevel)
 			@window.title += " - Ig3tool"
 			@window.move(169,0) # Zet het naast het toolwindow
 			@window.signal_connect("delete-event") do
 				@window.hide
 				true
 			end
-
       
 
                         @sounds = Hash.new
@@ -86,7 +86,7 @@ module Ig3tool
 		end
 
 		def _get_widget(widget)
-			@glade.get_widget(widget)
+			@glade.get_object(widget)
 		end
 
 		# Debugger combobox invullen

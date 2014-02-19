@@ -17,19 +17,19 @@ module Ig3tool
 		#
 		def initialize
 
-			super("bibliotheek.glade")
+			super("bibliotheek.xml")
 
 			# $client = Client.new("infogroep.be")
 
-			@tabs = @glade.get_widget("tabs")
+			@tabs = @glade.get_object("tabs")
 
-			@books_isbn      = @glade.get_widget("books_isbn")
-			@books_title     = @glade.get_widget("books_title")
-			@books_author    = @glade.get_widget("books_author")
-			@books_publisher = @glade.get_widget("books_publisher")
-			@books_year      = @glade.get_widget("books_year")
-			@books_section   = @glade.get_widget("books_section")
-			@books_copies    = @glade.get_widget("books_copies")
+			@books_isbn      = @glade.get_object("books_isbn")
+			@books_title     = @glade.get_object("books_title")
+			@books_author    = @glade.get_object("books_author")
+			@books_publisher = @glade.get_object("books_publisher")
+			@books_year      = @glade.get_object("books_year")
+			@books_section   = @glade.get_object("books_section")
+			@books_copies    = @glade.get_object("books_copies")
 
 			@books_fields = {
 			"isbn" => @books_isbn, 
@@ -41,13 +41,13 @@ module Ig3tool
 			}
 
 
-			@books_notification    = @glade.get_widget("books_notification")
+			@books_notification    = @glade.get_object("books_notification")
 
-			@loan_memberid   = @glade.get_widget("loan_memberid")
-			@loan_isbn       = @glade.get_widget("loan_isbn")
-			@loan_title       = @glade.get_widget("loan_title")
-			@loan_warranty   = @glade.get_widget("loan_warranty")
-			@loan_notification    = @glade.get_widget("loan_notification")
+			@loan_memberid   = @glade.get_object("loan_memberid")
+			@loan_isbn       = @glade.get_object("loan_isbn")
+			@loan_title       = @glade.get_object("loan_title")
+			@loan_warranty   = @glade.get_object("loan_warranty")
+			@loan_notification    = @glade.get_object("loan_notification")
 
 			@loan_fields = {
 			"isbn" => @loan_isbn,
@@ -55,8 +55,8 @@ module Ig3tool
 			"member" => @loan_memberid
 			}
 
-			@books_list   = @glade.get_widget("books_list")
-			@loan_list    = @glade.get_widget("loan_list")
+			@books_list   = @glade.get_object("books_list")
+			@loan_list    = @glade.get_object("loan_list")
 			@loan_list.model = @loan_list_store = Gtk::ListStore.new(Object, String, String, String, String, String, String)
 			ll = Gtk::CellRendererText.new
 			@loan_list.insert_column(-1, "loan date", ll) do |tvc, cell, m ,iter|
@@ -81,7 +81,7 @@ module Ig3tool
 			cell.text = iter[0].warranty
 			end
 
-			@books_list = @glade.get_widget("books_list")
+			@books_list = @glade.get_object("books_list")
 			@books_list.model = @books_list_store = Gtk::ListStore.new(Object, String)
 			bl = Gtk::CellRendererText.new
 			@books_list.insert_column(-1, "title", bl) do |tvc, cell, m ,iter|

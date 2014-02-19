@@ -10,24 +10,24 @@ module Ig3tool
 		attr :glade
 
 		def initialize
-			super("printing.glade")
+			super("printing.xml")
 
 
-			@tabs = @glade.get_widget("tabs")
+			@tabs = @glade.get_object("tabs")
 
-			@firstname = @glade.get_widget("firstname")
-			@lastname = @glade.get_widget("lastname")
-			@username = @glade.get_widget("username")
-			@email = @glade.get_widget("email")
-			@saldo = @glade.get_widget("saldo")
-			@notification = @glade.get_widget("errorfield")
-			@log_notification = @glade.get_widget("errorfield")
-			@apply = @glade.get_widget("apply")
-			@clear = @glade.get_widget("clear")
-			@delta = @glade.get_widget("delta")
-			@statussearch = @glade.get_widget("statussearch")
-			@status = @glade.get_widget("status")
-			@usernames = @glade.get_widget("usernames")
+			@firstname = @glade.get_object("firstname")
+			@lastname = @glade.get_object("lastname")
+			@username = @glade.get_object("username")
+			@email = @glade.get_object("email")
+			@saldo = @glade.get_object("saldo")
+			@notification = @glade.get_object("errorfield")
+			@log_notification = @glade.get_object("errorfield")
+			@apply = @glade.get_object("apply")
+			@clear = @glade.get_object("clear")
+			@delta = @glade.get_object("delta")
+			@statussearch = @glade.get_object("statussearch")
+			@status = @glade.get_object("status")
+			@usernames = @glade.get_object("usernames")
 			@usernames.model = @usernames_store = Gtk::ListStore.new(Object, String)
 			r = Gtk::CellRendererText.new
 			@usernames.insert_column(-1, "username", r, :text => 1)
@@ -35,11 +35,11 @@ module Ig3tool
 			
 			
 			# ALIASES
-			@alias_debugger = @glade.get_widget("alias_debugger")
-			@alias_notification = @glade.get_widget("errorfield")
-			@alias_username = @glade.get_widget("alias_username")
-			@alias_alias = @glade.get_widget("alias_alias")
-			@aliases = @glade.get_widget("aliases")
+			@alias_debugger = @glade.get_object("alias_debugger")
+			@alias_notification = @glade.get_object("errorfield")
+			@alias_username = @glade.get_object("alias_username")
+			@alias_alias = @glade.get_object("alias_alias")
+			@aliases = @glade.get_object("aliases")
 			@aliases.model = @aliases_store = Gtk::ListStore.new(Object, String)
 			ar = Gtk::CellRendererText.new
 			@aliases.insert_column(-1, "alias", ar, :text => 1)
@@ -49,7 +49,7 @@ module Ig3tool
 
 			# LOG
 
-			@filteredlog = @glade.get_widget("filteredlog")
+			@filteredlog = @glade.get_object("filteredlog")
 			@filteredlog.model = @filteredlog_store = Gtk::ListStore.new(Object, String)
 			@last_log_id = 0
 			fl = Gtk::CellRendererText.new
@@ -64,7 +64,7 @@ module Ig3tool
 			end
 
 
-			@log = @glade.get_widget("log")
+			@log = @glade.get_object("log")
 			@log.model = @log_store = Gtk::ListStore.new(Object)
 			@last_big_log_id = 0
 			l = Gtk::CellRendererText.new
@@ -98,13 +98,13 @@ module Ig3tool
 			end
 
       # externals
-			@ext_debugger = @glade.get_widget("ext_debugger")
-			@ext_notification = @glade.get_widget("errorfield")
-			@ext_name = @glade.get_widget("ext_name")
-			@ext_contact = @glade.get_widget("ext_contact")
-			@ext_ip = @glade.get_widget("ext_ip")
-			@ext_debt = @glade.get_widget("ext_debt")
-			@ext_list = @glade.get_widget("ext_list")
+			@ext_debugger = @glade.get_object("ext_debugger")
+			@ext_notification = @glade.get_object("errorfield")
+			@ext_name = @glade.get_object("ext_name")
+			@ext_contact = @glade.get_object("ext_contact")
+			@ext_ip = @glade.get_object("ext_ip")
+			@ext_debt = @glade.get_object("ext_debt")
+			@ext_list = @glade.get_object("ext_list")
 			@ext_list.model = @ext_list_store = Gtk::ListStore.new(Object, String)
 			err = Gtk::CellRendererText.new
 			@ext_list.insert_column(-1, "ext", err, :text => 1)
@@ -605,7 +605,7 @@ module Ig3tool
 			#puts "show: #{username}"
 			begin
 				user = $client.print_user(username)
-				person = $client.person_lookup({"username", username})[0]
+				person = $client.person_lookup(["username", username])[0]
 				@username.text = username
         _ext_clear
         @ext_contact.text = username
@@ -621,7 +621,7 @@ module Ig3tool
 			rescue Exception => e
 				#puts "EXC: " + e.message
 				begin
-          person = $client.person_lookup({"username", @username.text})
+          person = $client.person_lookup(["username", @username.text])
           raise NotFound, "the ig3tool imps found no such user..." if person.nil? or person.empty?
           person = person[0]
 					@username.text = username

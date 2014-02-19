@@ -7,7 +7,7 @@ module Ig3tool
         ICON = "emblem-sales.png"
 
         def initialize
-            super("sales.glade")
+            super("sales.xml")
             @status = "non member"
 
             @standard_beep = "biep3.wav"
@@ -18,19 +18,17 @@ module Ig3tool
             # init items
             @saldo_label = _get_widget("saldo_label")
             @saldo = _get_widget("saldo")
-
             @items = _get_widget("list")
             @items.model = Gtk::ListStore.new(Integer, String, Float, Object, String)
             r = Gtk::CellRendererText.new
             @items.insert_column(-1, "Aantal",  r, :text => 0)
             @items.insert_column(-1, "Product", r, :text => 1)
             @items.insert_column(-1, "Prijs",   r, :text => 2)
-            @member_id = @glade.get_widget("member_id")
-
+            @member_id = @glade.get_object("member_id")
             @window.show
 
             make_debugger_combo(_get_widget("debugger"), @window)
-            make_eval_widget @glade.get_widget("count"), 1
+            make_eval_widget @glade.get_object("count"), 1
 
             toggle_saldo_label(false)
         end
@@ -77,34 +75,34 @@ module Ig3tool
     
         def play_standard_sound(debugger)
             case debugger
-                when "rtytgat": play("lolplaybutton.wav")
-                when "rivmeche": play("lolplaybutton.wav")
-                when "jalemait": play("beepbeep.mp3")
-                when "fdevrien": play("beepbeep.mp3")
-                when "jadebie": play("biep3.wav")
-                when "kwpardon": play("girlsigh.wav")
-                when "rmatthij": play(enumerateSounds(File.join("rmatthij","scan","*")).choice)
+                when "rtytgat" then play("lolplaybutton.wav")
+                when "rivmeche" then play("lolplaybutton.wav")
+                when "jalemait" then play("beepbeep.mp3")
+                when "fdevrien" then play("beepbeep.mp3")
+                when "jadebie" then play("biep3.wav")
+                when "kwpardon" then play("girlsigh.wav")
+                when "rmatthij" then play(enumerateSounds(File.join("rmatthij","scan","*")).choice)
                 else play("biep3.wav")
             end
         end
 
         def play_debugger_sound(debugger)
             case debugger
-                when "tetten": play("tetten.wav")
-                when "rdewaele": play("yeahbaby.wav")
-                when "nvgeele": play("spanish2.wav")
-                when "bderooms": play("justice1.wav")
-                when "yocoppen": play("koekje.wav")
-                when "hdebondt": play("pika.wav")
-                when "kwpardon": play("girlsigh.wav")
-                when "rtytgat": play("lolbuttonandgreetings.wav")
-                when "rivmeche": play("lolbuttonandgreetings.wav")
-                when "tstrickx": play("scout2.wav")
-                when "fdevrien": play("r2d2.mp3")
-                when "khendric": play("modem.mp3")
-                when "ayvercru": play("yesmaster.mp3")
-                when "jalemait": play("Shazam.mp3")
-                when "rmatthij": play(enumerateSounds(File.join("rmatthij","select","*")).choice)
+                when "tetten" then play("tetten.wav")
+                when "rdewaele" then play("yeahbaby.wav")
+                when "nvgeele" then play("spanish2.wav")
+                when "bderooms" then play("justice1.wav")
+                when "yocoppen" then play("koekje.wav")
+                when "hdebondt" then play("pika.wav")
+                when "kwpardon" then play("girlsigh.wav")
+                when "rtytgat" then play("lolbuttonandgreetings.wav")
+                when "rivmeche" then play("lolbuttonandgreetings.wav")
+                when "tstrickx" then play("scout2.wav")
+                when "fdevrien" then play("r2d2.mp3")
+                when "khendric" then play("modem.mp3")
+                when "ayvercru" then play("yesmaster.mp3")
+                when "jalemait" then play("Shazam.mp3")
+                when "rmatthij" then play(enumerateSounds(File.join("rmatthij","select","*")).choice)
                 else play("biep3.wav")
             end
         end
@@ -118,19 +116,19 @@ module Ig3tool
                 play("dollar.mp3")
             else
                 case debugger
-                    when "graerts": play("miley_yeah.wav")
-                    when "rdewaele": play("fart.wav")
-                    when "yocoppen": play("letsgo.wav")
-                    when "tstrickx": play("scout1.wav")
-                    when "rtytgat": play("lolbuttonandreadytoplay.wav")
-                    when "rivmeche": play("lolbuttonandreadytoplay.wav")
-                    when "kwpardon": play("girlsigh.wav")
-                    when "khendric": play("befehl.mp3")
-                    when "fdevrien": play("alright.mp3")
-                    when "ayvercru": play("as_you_wish.mp3")
-                    when "jalemait": play("Thankyou.mp3")
-                    when "rmatthij": play(enumerateSounds(File.join("rmatthij","scribble","*")).choice)
-                    when "lavholsb": play("Larsje.wav")
+                    when "graerts" then play("miley_yeah.wav")
+                    when "rdewaele" then play("fart.wav")
+                    when "yocoppen" then play("letsgo.wav")
+                    when "tstrickx" then play("scout1.wav")
+                    when "rtytgat" then play("lolbuttonandreadytoplay.wav")
+                    when "rivmeche" then play("lolbuttonandreadytoplay.wav")
+                    when "kwpardon" then play("girlsigh.wav")
+                    when "khendric" then play("befehl.mp3")
+                    when "fdevrien" then play("alright.mp3")
+                    when "ayvercru" then play("as_you_wish.mp3")
+                    when "jalemait" then play("Thankyou.mp3")
+                    when "rmatthij" then play(enumerateSounds(File.join("rmatthij","scribble","*")).choice)
+                    when "lavholsb" then play("Larsje.wav")
                     else play("scribble.wav")
                 end
             end
@@ -179,7 +177,7 @@ module Ig3tool
 
                 # is het een debugger?
             when /^[a-z-]/i
-                wanted = {"username", value, "status", "debugger"}
+                wanted = ["username", value, "status", "debugger"]
                 pers = $client.person_lookup(wanted)
 
                 unless pers.empty?

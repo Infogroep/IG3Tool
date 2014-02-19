@@ -7,7 +7,7 @@ module Ig3tool
         ICON = "emblem-sales.png"
 
         def initialize
-            super("sales.glade")
+            super("sales.xml")
             @status = "non member"
 
             @standard_beep = "biep3.wav"
@@ -25,12 +25,12 @@ module Ig3tool
             @items.insert_column(-1, "Aantal",  r, :text => 0)
             @items.insert_column(-1, "Product", r, :text => 1)
             @items.insert_column(-1, "Prijs",   r, :text => 2)
-            @member_id = @glade.get_widget("member_id")
+            @member_id = @glade.get_object("member_id")
 
             @window.show
 
             make_debugger_combo(_get_widget("debugger"), @window)
-            make_eval_widget @glade.get_widget("count"), 1
+            make_eval_widget @glade.get_object("count"), 1
 
             toggle_saldo_label(false)
         end
