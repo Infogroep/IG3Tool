@@ -1,0 +1,2 @@
+apt-get install ruby ruby1.8-dev rubygems irb libgtk2-ruby libglib2-ruby libglade2-ruby libxss-dev
+gem install -y --no-ri --no-rdoc rails facets ruby-net-ldap RubyInline

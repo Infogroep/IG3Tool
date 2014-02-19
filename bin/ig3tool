@@ -1,0 +1,124 @@
+#!/usr/bin/env ruby
+
+require 'gtk2'
+require 'libglade2'
+require 'rubygems'
+require 'facets'
+
+# Client - Yaml / CONFIG
+require 'ig3client'
+require "lib/errors"
+require "lib/util"
+
+module Ig3tool
+
+  CONFIG = {
+    'amazon-associates-id' => 'webservices-20',
+    # You need an Amazon dev token (Lookup ISBN feature)
+    'amazon-dev-token'  => 'D2CCFZZMOO6ZB9'
+  }
+
+  # Maak de functies publiek
+
+  module_function
+
+  # Start functie (Openen grafische interface)
+  def start ()
+
+		host = ENV['IG3TOOL_HOST'] || "igwe.vub.ac.be"
+		port = ENV['IG3TOOL_PORT'] || 2007
+    $client = Ig3tool::Client.new(host, port)
+    $window = nil
+		$lw=nil
+    Gtk::init
+
+  
+		begin
+		if $client.validate
+			$window = ToolWindow.new(@klasses)
+		else
+			warn "validation failed"
+			$lw = LoginWindow.new($client) do
+				if $window
+					$window.show
+				else
+					$window = ToolWindow.new(@klasses)
+				end
+			end
+		end
+		rescue Exception => e
+			warn "falling back..."
+			warn "#{e.class} -- #{e.message}"
+			$lw = LoginWindow.new($client) do
+				if $window
+					$window.show
+				else
+					$window = ToolWindow.new(@klasses)
+				end
+			end
+		end
+		
+		
+    begin
+				Gtk::main
+    rescue Interrupt
+      # Ctrl-C
+    rescue Exception => e
+			warn "Uncaught exception: #{e.class} -- #{e.message}"
+			warn e.backtrace
+			error_dialog(nil, "Uncaught exception: #{e.message}\n")
+		end
+  end
+  
+  def show_login_window
+		if $lw
+			$lw.show
+			warn "CLASS: #{lw.class}"
+		else
+			$lw = LoginWindow.new($client) do
+				if $window
+					$window.show
+				else
+					$window = ToolWindow.new(@klasses)
+				end
+			end
+		end
+	end
+    
+  
+  def error_dialog (parent, exception)
+      dialog = Gtk::MessageDialog.new \
+        parent,
+        Gtk::Dialog::MODAL | Gtk::Dialog::DESTROY_WITH_PARENT,
+        Gtk::MessageDialog::WARNING,
+        Gtk::MessageDialog::BUTTONS_CLOSE,
+        exception.to_s
+      dialog.run
+      dialog.destroy
+    end
+
+
+  @klasses = []
+  # Functie toevoegen aan het tool-window
+  def register_window (klass)
+    @klasses <<= klass
+  end
+
+end
+
+# Toolwindow is het hoofd window
+require "ui/toolwindow"
+require "ui/gladehelper"
+
+# Alle functionaliteit loaden
+require "ui/bibliotheekwindow"
+require "ui/automaatwindow"
+require "ui/peoplewindow"
+require "ui/saleswindow"
+require "ui/printingwindow.rb"
+require "ui/interne.rb"
+require "ui/protjes.rb"
+require "ui/loginwindow.rb"
+
+# Start de grafische interface
+Ig3tool::start()
